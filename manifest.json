@@ -1,0 +1,30 @@
+{
+	"manifest_version": 3,
+	"name": "Clone in VS Code",
+	"version": "1.0.0",
+	"description": "Adds a 'Clone in VS Code' button to GitHub repositories for seamless one-click cloning",
+
+	"permissions": ["*://github.com/*"],
+
+	"content_scripts": [
+		{
+			"matches": ["*://github.com/*/*"],
+			"js": ["content.js"],
+			"run_at": "document_end"
+		}
+	],
+
+	"icons": {
+		"16": "icons/icon16.png",
+		"48": "icons/icon48.png",
+		"128": "icons/icon128.png"
+	},
+
+	"action": {
+		"default_icon": {
+			"16": "icons/icon16.png",
+			"48": "icons/icon48.png",
+			"128": "icons/icon128.png"
+		}
+	}
+}
