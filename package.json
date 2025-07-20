@@ -4,7 +4,7 @@
 	"description": "A simple Chrome extension that adds a 'Clone in VS Code' button to GitHub repositories for seamless one-click cloning.",
 	"main": "dist/content.js",
 	"scripts": {
-		"build": "tsc",
+		"build": "tsc && cp manifest.json dist/ && cp -r icons dist/",
 		"dev": "tsc --watch",
 		"clean": "rm -rf dist",
 		"test": "echo \"Error: no test specified\" && exit 1"
