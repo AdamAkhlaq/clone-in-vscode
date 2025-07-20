@@ -4,7 +4,7 @@
 	"version": "1.0.0",
 	"description": "Adds a 'Clone in VS Code' button to GitHub repositories for seamless one-click cloning",
 
-	"permissions": ["*://github.com/*"],
+	"host_permissions": ["*://github.com/*"],
 
 	"content_scripts": [
 		{
