@@ -521,7 +521,7 @@ class TabEventManager {
 
 			setTimeout(() => {
 				this.handleExistingTabClick(clickedLink as HTMLAnchorElement);
-			}, 50);
+			}, 10);
 		});
 	}
 
@@ -676,12 +676,15 @@ class CodeDropdownListener {
 
 		setTimeout(() => {
 			injector.inject();
-		}, 100);
+		}, 10);
 	}
 }
 
 class VSCodeCloneExtension {
 	private static instance: VSCodeCloneExtension;
+	private observer: MutationObserver | null = null;
+	private debounceTimer: number | null = null;
+	private currentUrl = "";
 
 	static getInstance(): VSCodeCloneExtension {
 		if (!VSCodeCloneExtension.instance) {
@@ -691,11 +694,53 @@ class VSCodeCloneExtension {
 	}
 
 	initialize(): void {
+		this.currentUrl = window.location.href;
+		this.injectIfRepository();
+		this.setupNavigationObserver();
+	}
+
+	private injectIfRepository(): void {
 		const repoInfo = RepositoryDetector.detect();
 
 		if (repoInfo.isRepository) {
 			const listener = new CodeDropdownListener(repoInfo);
 			listener.setup();
+		}
+	}
+
+	private setupNavigationObserver(): void {
+		this.observer = new MutationObserver(() => {
+			this.handlePageChange();
+		});
+
+		this.observer.observe(document.body, {
+			childList: true,
+			subtree: true,
+		});
+	}
+
+	private handlePageChange(): void {
+		if (this.debounceTimer) {
+			clearTimeout(this.debounceTimer);
+		}
+
+		this.debounceTimer = window.setTimeout(() => {
+			const newUrl = window.location.href;
+			if (newUrl !== this.currentUrl) {
+				this.currentUrl = newUrl;
+				this.injectIfRepository();
+			}
+		}, 100);
+	}
+
+	destroy(): void {
+		if (this.observer) {
+			this.observer.disconnect();
+			this.observer = null;
+		}
+		if (this.debounceTimer) {
+			clearTimeout(this.debounceTimer);
+			this.debounceTimer = null;
 		}
 	}
 }
@@ -709,3 +754,8 @@ if (document.readyState === "loading") {
 	const extension = VSCodeCloneExtension.getInstance();
 	extension.initialize();
 }
+
+window.addEventListener("beforeunload", () => {
+	const extension = VSCodeCloneExtension.getInstance();
+	extension.destroy();
+});
