@@ -3,14 +3,6 @@
  *
  * This content script adds a "VS Code" tab to GitHub's repository clone dropdown,
  * allowing users to directly clone repositories into VS Code with one click.
- *
- * Compatible with: Chrome, Edge, Brave, Opera, and other Chromium-based browsers
- *
- * Features:
- * - Detects GitHub repository pages
- * - Injects VS Code tab into clone dropdown
- * - Generates vscode:// deep links for cloning
- * - Matches GitHub's native UI styling
  */
 
 interface RepositoryInfo {
@@ -382,8 +374,6 @@ class VSCodePanelManager {
 				display: "flex",
 				"flex-direction": "column",
 				width: "100%",
-				height: "auto",
-				"max-height": "none",
 			}
 		);
 
@@ -411,8 +401,6 @@ class VSCodePanelManager {
 		const containerElement = container as HTMLElement;
 		containerElement.style.cssText += `
 			height: auto !important;
-			min-height: auto !important;
-			max-height: none !important;
 			flex-direction: column !important;
 			align-items: stretch !important;
 		`;
@@ -524,15 +512,25 @@ class TabEventManager {
 	}
 
 	attachExistingTabListeners(): void {
-		this.cloneMethodList.querySelectorAll("a").forEach((existingLink) => {
-			existingLink.addEventListener("click", () => {
-				this.handleExistingTabClick();
-			});
+		const nav = this.cloneMethodList.closest("nav");
+		if (!nav) return;
+
+		nav.addEventListener("click", (e) => {
+			const clickedLink = (e.target as Element).closest("a");
+			if (!clickedLink || clickedLink === this.vscodeLink) return;
+
+			setTimeout(() => {
+				this.handleExistingTabClick(clickedLink as HTMLAnchorElement);
+			}, 50);
 		});
 	}
 
-	private handleExistingTabClick(): void {
-		this.vscodeLink.removeAttribute("aria-current");
+	private handleExistingTabClick(clickedLink: HTMLAnchorElement): void {
+		this.cloneMethodList.querySelectorAll("a").forEach((link) => {
+			link.removeAttribute("aria-current");
+		});
+		clickedLink.setAttribute("aria-current", "page");
+
 		new DescriptionTextManager().show();
 		this.restoreOriginalContent();
 	}
@@ -674,16 +672,11 @@ class CodeDropdownListener {
 
 	private attemptInjection(): void {
 		const injector = new VSCodeButtonInjector(this.repoInfo);
-
 		injector.inject();
 
 		setTimeout(() => {
 			injector.inject();
-		}, 50);
-
-		setTimeout(() => {
-			injector.inject();
-		}, 150);
+		}, 100);
 	}
 }
 
