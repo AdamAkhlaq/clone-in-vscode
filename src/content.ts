@@ -667,7 +667,32 @@ class CodeDropdownListener {
 	private attachClickListener(codeButton: HTMLButtonElement): void {
 		codeButton.addEventListener("click", () => {
 			this.attemptInjection();
+			this.setupLocalTabListener();
 		});
+	}
+
+	private setupLocalTabListener(): void {
+		setTimeout(() => {
+			const localTab = this.findLocalTab();
+			if (localTab) {
+				localTab.addEventListener("click", () => {
+					setTimeout(() => {
+						this.attemptInjection();
+					}, 5);
+				});
+			}
+		}, 10);
+	}
+
+	private findLocalTab(): HTMLElement | null {
+		const tabs = Array.from(document.querySelectorAll("button, a"));
+		return (
+			(tabs.find(
+				(tab) =>
+					tab.textContent?.trim() === "Local" ||
+					tab.getAttribute("aria-label")?.includes("Local")
+			) as HTMLElement) || null
+		);
 	}
 
 	private attemptInjection(): void {
@@ -676,7 +701,7 @@ class CodeDropdownListener {
 
 		setTimeout(() => {
 			injector.inject();
-		}, 10);
+		}, 5);
 	}
 }
 
@@ -709,8 +734,28 @@ class VSCodeCloneExtension {
 	}
 
 	private setupNavigationObserver(): void {
-		this.observer = new MutationObserver(() => {
+		this.observer = new MutationObserver((mutations) => {
 			this.handlePageChange();
+
+			mutations.forEach((mutation) => {
+				if (mutation.type === "childList") {
+					const addedNodes = Array.from(mutation.addedNodes);
+					const hasDropdownContent = addedNodes.some(
+						(node) =>
+							node instanceof Element &&
+							(node.querySelector('nav[aria-label="Remote URL selector"]') ||
+								node.matches('nav[aria-label="Remote URL selector"]') ||
+								node.textContent?.includes("HTTPS") ||
+								node.textContent?.includes("SSH"))
+					);
+
+					if (hasDropdownContent) {
+						setTimeout(() => {
+							this.injectIfRepository();
+						}, 5);
+					}
+				}
+			});
 		});
 
 		this.observer.observe(document.body, {
