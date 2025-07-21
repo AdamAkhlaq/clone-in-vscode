@@ -1,5 +1,5 @@
 /**
- * Clone in VS Code - Chromium Browser Extension Content Script
+ * GitHub Clone in VS Code - Chromium Browser Extension Content Script
  *
  * This content script adds a "VS Code" tab to GitHub's repository clone dropdown,
  * allowing users to directly clone repositories into VS Code with one click.

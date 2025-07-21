@@ -1,6 +1,6 @@
 {
 	"manifest_version": 3,
-	"name": "Clone in VS Code",
+	"name": "GitHub Clone in VS Code",
 	"version": "1.0.0",
 	"description": "Adds a 'Clone in VS Code' button to GitHub repositories for seamless one-click cloning",
 

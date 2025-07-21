@@ -1,8 +1,8 @@
-# Clone in VS Code 🚀
+# GitHub Clone in VS Code 🚀
 
 > A simple Chrome extension that adds a "Clone in VS Code" button to GitHub repositories for seamless one-click cloning.
 
-[![GitHub stars](https://img.shields.io/github/stars/AdamAkhlaq/clone-in-vscode?style=social)](https://github.com/AdamAkhlaq/clone-in-vscode/stargazers)
+[![GitHub stars](https://img.shields.io/github/stars/AdamAkhlaq/github-clone-in-vscode?style=social)](https://github.com/AdamAkhlaq/github-clone-in-vscode/stargazers)
 [![Chrome Extension](https://img.shields.io/badge/Chrome-Extension-4285F4?logo=googlechrome&logoColor=white)](https://chrome.google.com/webstore)
 [![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Manifest V3](https://img.shields.io/badge/Manifest-V3-green)](https://developer.chrome.com/docs/extensions/mv3/)

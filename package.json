@@ -1,5 +1,5 @@
 {
-	"name": "clone-in-vscode",
+	"name": "github-clone-in-vscode",
 	"version": "1.0.0",
 	"description": "A simple Chrome extension that adds a 'Clone in VS Code' button to GitHub repositories for seamless one-click cloning.",
 	"main": "dist/content.js",
