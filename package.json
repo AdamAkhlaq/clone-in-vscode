@@ -7,6 +7,7 @@
 		"build": "tsc && cp manifest.json dist/ && cp -r icons dist/",
 		"dev": "tsc --watch",
 		"clean": "rm -rf dist",
+		"package": "npm run build && cd dist && zip -r ../github-clone-in-vscode-v1.0.0.zip .",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"keywords": [
