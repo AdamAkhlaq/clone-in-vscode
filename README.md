@@ -2,12 +2,33 @@
 
 > Seamlessly adds a "Clone in VS Code" button to GitHub repositories as if it were a native feature for instant one-click cloning.
 
-![VS Code Clone](.github/images/vscode-option.png)
+<div align="center">
 
+![VS Code Clone Button](.github/images/vscode-option.png)
+
+</div>
+
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/v/effhdkonnknoebahhnnciakckbbfmcpi?style=flat-square&logo=googlechrome&logoColor=white&label=Chrome%20Web%20Store)](https://chromewebstore.google.com/detail/github-clone-in-vs-code/effhdkonnknoebahhnnciakckbbfmcpi)
+[![Chrome Web Store Users](https://img.shields.io/chrome-web-store/users/effhdkonnknoebahhnnciakckbbfmcpi?style=flat-square&color=blue&label=Users)](https://chromewebstore.google.com/detail/github-clone-in-vs-code/effhdkonnknoebahhnnciakckbbfmcpi)
+[![Chrome Web Store Rating](https://img.shields.io/chrome-web-store/rating/effhdkonnknoebahhnnciakckbbfmcpi?style=flat-square&color=orange&label=Rating)](https://chromewebstore.google.com/detail/github-clone-in-vs-code/effhdkonnknoebahhnnciakckbbfmcpi)
 [![GitHub stars](https://img.shields.io/github/stars/AdamAkhlaq/github-clone-in-vscode?style=flat-square&logo=github)](https://github.com/AdamAkhlaq/github-clone-in-vscode/stargazers)
 [![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Manifest V3](https://img.shields.io/badge/Manifest-V3-green)](https://developer.chrome.com/docs/extensions/mv3/)
+[![Manifest V3](https://img.shields.io/badge/Manifest-V3-green?style=flat-square)](https://developer.chrome.com/docs/extensions/mv3/)
 [![MIT License](https://img.shields.io/github/license/AdamAkhlaq/github-clone-in-vscode?style=flat-square)](LICENSE)
+
+---
+
+## 🚀 **Get Started Now**
+
+<div align="center">
+
+### **Install from Chrome Web Store**
+
+[![Add to Chrome](https://img.shields.io/badge/Add%20to%20Chrome-4285F4?style=for-the-badge&logo=googlechrome&logoColor=white)](https://chromewebstore.google.com/detail/github-clone-in-vs-code/effhdkonnknoebahhnnciakckbbfmcpi)
+
+_Available for Chrome, Edge, Brave, Opera, and all Chromium-based browsers_
+
+</div>
 
 ---
 
@@ -44,9 +65,9 @@ The extension generates a `vscode://vscode.git/clone?url=https://github.com/owne
 
 ## 💻 Installation
 
-### Chrome Web Store (Coming Soon)
+### Chrome Web Store (Recommended)
 
-1. Visit the [Chrome Web Store page](https://chrome.google.com/webstore/])
+1. Visit the [Chrome Web Store page](https://chromewebstore.google.com/detail/github-clone-in-vs-code/effhdkonnknoebahhnnciakckbbfmcpi)
 2. Click "Add to Chrome"
 3. Navigate to any GitHub repository and start cloning!
 
